@@ -36,7 +36,7 @@ export default function Layout({ children }) {
             </Link>
             <a
               href="mailto:opatel272005@gmail.com"
-              className="btn-black text-xs"
+              className="btn-red text-xs"
             >
               Hire Me
             </a>

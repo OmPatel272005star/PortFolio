@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { navLinks, personal } from '../../data/personal'
 import { X } from 'lucide-react'
+import { Download } from "lucide-react";
 
 export default function Sidebar({ isOpen, onClose }) {
   const location = useLocation()
@@ -42,32 +43,42 @@ export default function Sidebar({ isOpen, onClose }) {
         {/* Profile box */}
         <div className="p-4 border-b-2 border-black">
           {/* Avatar */}
-          <div
-            className="w-full aspect-square border-2 border-black shadow-brutal bg-[#facc15] flex items-center justify-center mb-3"
-          >
-            <span style={{ fontFamily: "'Press Start 2P', cursive", fontSize: '3rem' }}>
-              OP
-            </span>
+          <div className="relative border-2 border-black shadow-brutal bg-[#facc15] p-2 w-full aspect-square">
+
+            {/* Inner dashed frame */}
+            <div className="border-2 border-dashed border-black w-full h-full flex items-center justify-center overflow-hidden">
+
+              {/* YOUR IMAGE */}
+              <img
+                src="/src/data/profile_photo.png" // <-- put your image here
+                alt="Om Patel"
+                className="w-full h-full object-cover grayscale contrast-125"
+              />
+
+            </div>
+
+            {/* Corner Badge */}
+            
           </div>
 
           {/* Name */}
-          <p
+          {/* <p
             className="font-bold text-sm text-black mb-1"
             style={{ fontFamily: "'Press Start 2P', cursive", fontSize: '0.65rem', lineHeight: 1.8 }}
           >
             {personal.name}
-          </p>
+          </p> */}
 
           {/* Role */}
-          <p className="font-mono text-xs text-gray-600 mb-2">
+          {/* <p className="font-mono text-xs text-gray-600 mb-2">
             {personal.role}
-          </p>
+          </p> */}
 
           {/* Availability */}
-          <div className="flex items-center gap-2 border-2 border-black bg-white px-2 py-1">
+          {/* <div className="flex items-center gap-2 border-2 border-black bg-white px-2 py-1">
             <span className="w-2 h-2 bg-[#22c55e] border border-black inline-block flex-shrink-0"></span>
             <span className="font-mono text-xs text-[#166534] font-bold">{personal.availability}</span>
-          </div>
+          </div> */}
         </div>
 
         {/* Navigation */}
@@ -91,11 +102,12 @@ export default function Sidebar({ isOpen, onClose }) {
         {/* Resume button */}
         <div className="p-4 border-t-2 border-black">
           <a
-            href="#"
-            className="btn-black w-full text-center block text-xs"
-            style={{ fontFamily: "'Press Start 2P', cursive", fontSize: '0.5rem', lineHeight: 2 }}
+            href="/resume.pdf"
+            download
+            className="flex items-center gap-2 px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition"
           >
-            ⬇ RESUME
+            <Download size={18} />
+            <span>RESUME</span>
           </a>
         </div>
       </aside>

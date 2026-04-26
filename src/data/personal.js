@@ -17,7 +17,7 @@ export const personal = {
   linkedin: 'https://linkedin.com',
   github: 'https://github.com',
   bio: 'CS undergrad passionate about backend systems, scalability, and clean architecture. Currantly Exploring Machine Learning &  Deep Learning. Focuses on building creative,innovative & efficient solutions.',
-  story: `I'm a final-year IT student at IIIT Vadodara with a CGPA of 8.35. I've interned as a Web Developer at Virtual Coders Pvt. Ltd. where I built RESTful APIs, data validation pipelines, and JWT-based authentication systems.\n\nI love building things that scale — from Kafka-backed notification systems to real-time chat applications. Whether it's architecting microservices or shipping a full-stack SaaS product, I bring a system-design mindset to everything I build.`,
+  story: `I'm Om Patel, a final-year B.Tech (IT) student at IIIT Vadodara with a strong foundation in Computer Science fundamentals and Data Structures & Algorithms. I have solved 1200+ problems across LeetCode and Codeforces, which has sharpened my problem-solving instincts and built a structured approach to tackling complex challenges. \n\n I'm passionate about backend engineering, distributed systems, and system design — I think deeply about scalability, fault tolerance, and how things fit together at a architectural level.\n\n Currently exploring into Machine Learning, Deep Learning, and Agentic AI — exploring LLMs, RAG pipelines, vector databases, fine-tuning, and prompt engineering — building toward designing intelligent, production-ready AI applications on top of a strong systems and backend engineering foundation.`,
   yearsOfExperience: '2+',
 }
 
@@ -142,37 +142,37 @@ export const projects = [
 
 export const skills = {
   languages: [
-    { name: 'C++', color: '#3b82f6', icon: '💙' },
-    { name: 'Java', color: '#ef4444', icon: '☕' },
-    { name: 'JavaScript', color: '#facc15', icon: '🟨' },
-    { name: 'TypeScript', color: '#3b82f6', icon: '🔷' },
+    { name: 'C++', color: '#004482', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+    { name: 'Java', color: '#f89820', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+    { name: 'JavaScript', color: '#f0db4f', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+    { name: 'TypeScript', color: '#3178c6', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
   ],
   frameworks: [
-    { name: 'React.js', color: '#14b8a6', icon: '⚛️' },
-    { name: 'Node.js', color: '#22c55e', icon: '🟢' },
-    { name: 'Express.js', color: '#111111', icon: '🚂' },
-    { name: 'HTML/CSS', color: '#f97316', icon: '🌐' },
+    { name: 'React.js', color: '#20232a', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+    { name: 'Node.js', color: '#339933', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+    { name: 'Express.js', color: '#000000', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
+    { name: 'HTML/CSS', color: '#e34f26', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
   ],
   databases: [
-    { name: 'MySQL', color: '#3b82f6', icon: '🐬' },
-    { name: 'PostgreSQL', color: '#3b82f6', icon: '🐘' },
-    { name: 'MongoDB', color: '#22c55e', icon: '🍃' },
-    { name: 'Redis', color: '#ef4444', icon: '🔴' },
+    { name: 'MySQL', color: '#4479a1', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+    { name: 'PostgreSQL', color: '#336791', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+    { name: 'MongoDB', color: '#47a248', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+    { name: 'Redis', color: '#dc382d', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg' },
   ],
   devops: [
-    { name: 'Docker', color: '#3b82f6', icon: '🐳' },
-    { name: 'Kafka', color: '#111111', icon: '📨' },
-    { name: 'Git', color: '#f97316', icon: '🔀' },
-    { name: 'BullMQ', color: '#ef4444', icon: '🐂' },
+    { name: 'Docker', color: '#2496ed', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+    { name: 'Kafka', color: '#231f20', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg' },
+    { name: 'GitHub', color: '#181717', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' },
+    // { name: 'BullMQ', color: '#ef4444', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg' },
   ],
   concepts: [
-    { name: 'DSA', color: '#facc15', icon: '🧮' },
-    { name: 'OOPS', color: '#f97316', icon: '📦' },
-    { name: 'DBMS', color: '#22c55e', icon: '🗄️' },
-    { name: 'OS / CN', color: '#14b8a6', icon: '🖥️' },
+    { name: 'DSA', color: '#1a1a2e', icon: null },
+    { name: 'OOPS', color: '#2b2d42', icon: null },
+    { name: 'DBMS', color: '#16213e', icon: null },
+    { name: 'OS ', color: '#0f3460', icon: null },
+    { name: 'CN', color: '#0f3460', icon: null },
   ],
 }
-
 export const codingProfiles = [
   {
     id: 'lc1',
@@ -217,14 +217,14 @@ export const achievements = [
     detail: 'Rating 1850 — Top competitive programmers',
     color: '#f97316',
     icon: '⚔️',
-  },
-  {
-    id: 'ach3',
-    title: 'Codeforces Pupil',
-    detail: 'Rating 1255 — Active competitive coder',
-    color: '#22c55e',
-    icon: '💻',
-  },
+  }
+  // {
+  //   id: 'ach3',
+  //   title: 'Codeforces Pupil',
+  //   detail: 'Rating 1255 — Active competitive coder',
+  //   color: '#22c55e',
+  //   icon: '💻',
+  // },
 ]
 
 export const education = [
