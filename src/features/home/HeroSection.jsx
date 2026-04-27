@@ -1,5 +1,6 @@
 import React from 'react'
 import { personal, infoCards } from '../../data/personal'
+import AvatarSVG from '../../data/avatarSVG';
 
 export default function HeroSection() {
   return (
@@ -72,52 +73,17 @@ export default function HeroSection() {
         {/* RIGHT: stamp-style profile visual */}
         <div className="lg:w-56 flex-shrink-0 flex flex-col items-center">
           {/* Main Card */}
-          <div className="relative border-2 border-black shadow-brutal bg-[#facc15] p-2 w-full aspect-square">
+          <div >
 
             {/* Inner dashed frame */}
-            <div className="border-2 border-dashed border-black w-full h-full flex items-center justify-center overflow-hidden">
+            <div >
 
               {/* YOUR IMAGE */}
-              <img
-                src="/src/data/profile_photo.png" // <-- put your image here
-                alt="Om Patel"
-                className="w-full h-full object-cover grayscale contrast-125"
-              />
-
+              <AvatarSVG/>
             </div>
 
             {/* Corner Badge */}
-            <div className="absolute -top-3 -right-3 bg-[#ef4444] border-2 border-black w-10 h-10 flex items-center justify-center shadow-brutal-xs">
-              <svg viewBox="0 0 24 24" className="w-6 h-6">
-                {/* Saffron */}
-                <rect width="24" height="8" y="0" fill="#FF9933" />
-                {/* White */}
-                <rect width="24" height="8" y="8" fill="#FFFFFF" />
-                {/* Green */}
-                <rect width="24" height="8" y="16" fill="#138808" />
-                {/* Ashoka Chakra */}
-                <g transform="translate(12,12)">
-                  {/* Outer ring */}
-                  <circle r="2.2" fill="none" stroke="#000080" strokeWidth="0.8" />
-                  {/* 24 spokes */}
-                  {[...Array(24)].map((_, i) => {
-                    const angle = (i * 360) / 24;
-                    return (
-                      <line
-                        key={i}
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="-2.2"
-                        stroke="#000080"
-                        strokeWidth="0.4"
-                        transform={`rotate(${angle})`}
-                      />
-                    );
-                  })}
-                </g>
-              </svg>
-            </div>
+            {/*  */}
           </div>
 
 

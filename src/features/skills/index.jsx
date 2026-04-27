@@ -68,7 +68,7 @@ export default function SkillsPage() {
       <SectionWrapper badge="TECH STACK" title="SKILLS">
         <div className="card-brutal">
           <SkillGrid title="LANGUAGES" items={skills.languages} />
-          <SkillGrid title="FRAMEWORKS & FRONTEND" items={skills.frameworks} />
+          <SkillGrid title="FRAMEWORKS & Libraries" items={skills.frameworks} />
           <SkillGrid title="DATABASES" items={skills.databases} />
           <SkillGrid title="DEVOPS & TOOLS" items={skills.devops} />
           <SkillGrid title="CS CONCEPTS" items={skills.concepts} />

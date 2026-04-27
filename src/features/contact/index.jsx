@@ -1,27 +1,95 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { personal } from '../../data/personal'
 import SectionWrapper from '../../components/ui/SectionWrapper'
+import { Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react'
+
+
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const MY_EMAIL            = import.meta.env.VITE_MY_EMAIL;
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [form, setForm]       = useState({ name: '', email: '', message: '' })
+  const [sent, setSent]       = useState(false)
+  const [sending, setSending] = useState(false)
+  const [errMsg, setErrMsg]   = useState('')
+  const [ejsReady, setEjsReady] = useState(false)
+
+  const notConfigured = !EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID
+  // Load EmailJS SDK once
+  useEffect(() => {
+    if (window.emailjs) { setEjsReady(true); return }
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'
+    script.async = true
+    script.onload = () => {
+      window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
+      setEjsReady(true)
+    }
+    script.onerror = () => console.warn('EmailJS failed to load')
+    document.head.appendChild(script)
+  }, [])
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const validate = () => {
+    if (!form.name.trim())    return 'Please enter your name.'
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
+                              return 'Please enter a valid email address.'
+    if (!form.message.trim()) return 'Please write a message.'
+    return null
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // In production, wire up to a form API (e.g. Formspree, EmailJS)
-    setSent(true)
+    setErrMsg('')
+   
+    const err = validate()
+    if (err) { setErrMsg(err); return }
+
+    if (notConfigured) {
+      setErrMsg('EmailJS is not configured yet.')
+      return
+    }
+
+    setSending(true)
+    try {
+      await window.emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          to_email:   MY_EMAIL,
+          from_name:  form.name.trim(),
+          from_email: form.email.trim(),
+          subject:    `Portfolio Contact from ${form.name.trim()}`,
+          message:    form.message.trim(),
+          reply_to:   form.email.trim(),
+        }
+      )
+      setSent(true)
+    } catch (error) {
+      console.error('EmailJS error:', error)
+      setErrMsg(`Send failed. Email directly: ${MY_EMAIL}`)
+    } finally {
+      setSending(false)
+    }
+  }
+
+  const reset = () => {
+    setForm({ name: '', email: '', message: '' })
+    setSent(false)
+    setErrMsg('')
   }
 
   const contactInfo = [
-    { icon: '✉️', label: 'Email', value: personal.email, href: `mailto:${personal.email}` },
-    { icon: '📍', label: 'Location', value: personal.location, href: null },
-    { icon: '📞', label: 'Phone', value: personal.phone, href: `tel:${personal.phone}` },
-    { icon: '🐙', label: 'GitHub', value: 'github.com/om-patel', href: personal.github },
-    { icon: '💼', label: 'LinkedIn', value: 'linkedin.com/in/om-patel', href: personal.linkedin },
+    { icon: <Mail/>, label: 'Email', value: personal.email, href: `mailto:${personal.email}` },
+    { icon: <MapPin/>, label: 'Location', value: personal.location, href: null },
+    { icon: <Phone/>, label: 'Phone', value: personal.phone, href: `tel:${personal.phone}` },
+    { icon: <Github/>, label: 'GitHub', value: 'github.com/om-patel', href: personal.github },
+    { icon: <Linkedin/>, label: 'LinkedIn', value: 'linkedin.com/in/om-patel', href: personal.linkedin },
   ]
 
   return (
@@ -75,7 +143,7 @@ export default function ContactPage() {
                   MESSAGE SENT!
                 </p>
                 <p className="font-mono text-sm text-gray-600">I'll get back to you soon.</p>
-                <button onClick={() => setSent(false)} className="btn-yellow text-xs">
+                <button onClick={reset} className="btn-yellow text-xs">
                   SEND ANOTHER
                 </button>
               </div>
@@ -87,6 +155,20 @@ export default function ContactPage() {
                 >
                   SEND A MESSAGE
                 </p>
+
+                {/* EmailJS not configured warning */}
+                {notConfigured && (
+                  <div className="font-mono text-xs text-yellow-700 bg-yellow-50 border-2 border-yellow-400 p-2">
+                    ⚙️ EmailJS not configured yet — paste your Service ID, Template ID &amp; Public Key into ContactPage.jsx.
+                  </div>
+                )}
+
+                {/* Error */}
+                {errMsg && (
+                  <div className="font-mono text-xs text-red-700 bg-red-50 border-2 border-red-400 p-2">
+                    ⚠️ {errMsg}
+                  </div>
+                )}
 
                 <div>
                   <label className="font-mono text-xs text-gray-500 block mb-1">YOUR NAME</label>
@@ -101,7 +183,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="font-mono text-xs text-gray-500 block mb-1">EMAIL</label>
+                  <label className="font-mono text-xs text-gray-500 block mb-1">Your EMAIL ID</label>
                   <input
                     name="email"
                     type="email"
@@ -126,8 +208,12 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button type="submit" className="btn-yellow text-xs self-start">
-                  ▶ SEND MESSAGE
+                <button
+                  type="submit"
+                  disabled={sending || notConfigured}
+                  className="btn-yellow text-xs self-start"
+                >
+                  {sending ? '⏳ SENDING...' : '▶ SEND MESSAGE'}
                 </button>
               </form>
             )}

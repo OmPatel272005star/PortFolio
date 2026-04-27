@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Menu } from 'lucide-react'
 import { personal } from '../../data/personal'
@@ -21,12 +21,12 @@ export default function Layout({ children }) {
             >
               <Menu size={18} />
             </button>
-            <span
+            {/* <span
               className="text-black font-bold"
               style={{ fontFamily: "'Press Start 2P', cursive", fontSize: '0.6rem', lineHeight: 2 }}
             >
               &lt;OM.DEV /&gt;
-            </span>
+            </span> */}
           </div>
 
           {/* Right: buttons */}
@@ -34,12 +34,9 @@ export default function Layout({ children }) {
             <Link to="/" className="btn-white text-xs hidden sm:block">
               Home
             </Link>
-            <a
-              href="mailto:opatel272005@gmail.com"
-              className="btn-red text-xs"
-            >
+            <NavLink to="/contact" className="btn-red text-xs">
               Hire Me
-            </a>
+            </NavLink>
           </div>
         </div>
       </header>
